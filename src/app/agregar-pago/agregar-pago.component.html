@@ -1,0 +1,39 @@
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade" *ngIf="isLoadingResults">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+
+    <mat-card class="example-card">
+        <mat-card-title> Agregar método de pago </mat-card-title>
+        <form [formGroup]="addPayForm" (ngSubmit)="onFormSubmit(addPayForm.value)">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Número de Ruta" formControlName="branchId">
+                <mat-error>
+                    <span *ngIf="!addPayForm.get('branchId').valid && addPayForm.get('branchId').touched">Por favor ingrese el número de ruta</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Número de Cuenta" formControlName="bankAccountId">
+                <mat-error>
+                    <span *ngIf="!addPayForm.get('bankAccountId').valid && addPayForm.get('bankAccountId').touched">Por favor ingrese el número de cuenta</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" pais="options.value.bankAccountPurpose">
+                <mat-select placeholder="Tipo de Cuenta" formControlName="bankAccountPurpose">
+                    <mat-option value="CHECKING">CHEQUES</mat-option>
+                    <mat-option value="SAVINGS">AHORROS</mat-option>
+                </mat-select>
+                <mat-error>
+                    <span *ngIf="!addPayForm.get('bankAccountPurpose').valid && addPayForm.get('bankAccountPurpose').touched">Por favor selecciona el Estado/Provincia</span>
+                </mat-error>
+            </mat-form-field>
+            <div class="button-row">
+                <button type="submit" [disabled]="!addPayForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+                <a mat-flat-button color="primary" [routerLink]="['/usuarios']">
+                    <mat-icon>keyboard_backspace</mat-icon>
+                </a>
+            </div>
+        </form>
+    </mat-card>
+</div>

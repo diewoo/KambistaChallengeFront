@@ -1,0 +1,26 @@
+.registro-container {
+    position: relative;
+    padding: 5px;
+}
+
+.registro-form {
+    min-width: 150px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.registro-full-width {
+    width: 100%;
+}
+
+.registro-full-width:nth-last-child() {
+    margin-bottom: 10px;
+}
+
+.button-row {
+    margin: 10px 0;
+}
+
+.mat-flat-button {
+    margin: 5px;
+}

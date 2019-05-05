@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-width: 500px;
+    text-align: center;
+}
+
+th.mat-header-cell {
+    text-align: center;
+    max-width: 300px;
+}
+
+body {
+    font-family: 'Covered By Your Grace', cursive;
+    line-height: 1.25;
+}

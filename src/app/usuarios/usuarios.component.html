@@ -1,0 +1,106 @@
+<div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-md-3">
+
+            <button style="background-color:#3f51b5" button class="btn btn-primary" [routerLink]="['/registro']">Agregar
+        Usuario
+        <mat-icon class="mat-18">supervisor_account</mat-icon>
+    </button>
+
+        </div>
+
+        <div class="col-md-6">
+            <p class="h1">Usuarios</p>
+        </div>
+        <div class="table-responsive">
+            <table mat-table [dataSource]="data" class="mat-elevation-z8 ">
+
+
+                <ng-container matColumnDef="firstName">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="lastName">
+                    <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dateOfBirth">
+                    <th mat-header-cell *matHeaderCellDef> Fecha de Nacimiento </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dateOfBirth}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef> Email </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="addressLine1">
+                    <th mat-header-cell *matHeaderCellDef> Dirección </th>
+                    <td mat-cell *matCellDef="let element"> {{element.addressLine1}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="city">
+                    <th mat-header-cell *matHeaderCellDef> Ciudad </th>
+                    <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="stateProvince">
+                    <th mat-header-cell *matHeaderCellDef> Estado/Provincia </th>
+                    <td mat-cell *matCellDef="let element"> {{element.stateProvince}} </td>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="country">
+                    <th mat-header-cell *matHeaderCellDef> País </th>
+                    <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="addPay">
+                    <th mat-header-cell *matHeaderCellDef> Agregar Metódo de Pago </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button color="warn" [routerLink]="['/registrar-pago',element.token]" (click)="agregarMetodoPago(element.token)">
+              <mat-icon class="mat-18">attach_money</mat-icon>
+            </button>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="addPago">
+                    <th mat-header-cell *matHeaderCellDef> Pagar </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button color="warn" (click)="AddContact(element.token)">
+                                <mat-icon class="mat-18">credit_card</mat-icon>
+
+                  </button>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="verCuentas">
+                    <th mat-header-cell *matHeaderCellDef> Ver Cuentas </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button color="warn" [routerLink]="['/cuentas',element.token]">
+              <mat-icon class="mat-18">account_balance</mat-icon>
+            </button>
+                    </td>
+                </ng-container>
+
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>

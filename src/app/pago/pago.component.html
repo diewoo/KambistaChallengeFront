@@ -1,0 +1,45 @@
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade" *ngIf="isLoadingResults">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+
+    <mat-card class="example-card">
+        <mat-card-title> Pagar</mat-card-title>
+        <form [formGroup]="addPagoForm" (ngSubmit)="onFormSubmit(addPagoForm.value)">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Cliente Pago ID" formControlName="clientPaymentId">
+                <mat-error>
+                    <span *ngIf="!addPagoForm.get('clientPaymentId').valid && addPagoForm.get('clientPaymentId').touched">Por favor ingrese el id de pago</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Monto" formControlName="amount">
+                <mat-error>
+                    <span *ngIf="!addPagoForm.get('amount').valid && addPagoForm.get('amount').touched">Por favor ingrese el monto</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" pais="options.value.purpose">
+                <mat-select placeholder="Motivo" formControlName="purpose">
+                    <mat-option value="GP0001">Bonus</mat-option>
+                    <mat-option value="GP0002">Comisión</mat-option>
+                    <mat-option value="GP0003">Gastos</mat-option>
+                    <mat-option value="GP0004">Inafecto</mat-option>
+                    <mat-option value="GP0005">Ingresos</mat-option>
+                    <mat-option value="GP0006">Pensión</mat-option>
+                    <mat-option value="GP0007">Donativo a la caridad</mat-option>
+
+                </mat-select>
+                <mat-error>
+                    <span *ngIf="!addPagoForm.get('purpose').valid && addPagoForm.get('purpose').touched">Por favor selecciona el motivo</span>
+                </mat-error>
+            </mat-form-field>
+            <div class="button-row">
+                <button type="submit" [disabled]="!addPagoForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+                <a mat-flat-button color="primary" (click)="onNoClick()">
+                    <mat-icon>keyboard_backspace</mat-icon>
+                </a>
+            </div>
+        </form>
+    </mat-card>
+</div>

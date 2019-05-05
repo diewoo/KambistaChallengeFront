@@ -1,0 +1,94 @@
+<div class="registro-container mat-elevation-z8">
+    <div class="registro-loading-shade" *ngIf="isLoadingResults">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+
+    <mat-card class="registro-card">
+        <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit(registerForm.value)">
+            <p class="h1">Agregar Usuario</p>
+            <mat-form-field class="registro-full-width">
+                <input matInput placeholder="Nombre" formControlName="firstName">
+                <mat-error>
+                    <span *ngIf="!registerForm.get('firstName').valid && registerForm.get('firstName').touched">Por favor ingresa el nombre </span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="registro-full-width">
+                <input matInput placeholder="Apellido" formControlName="lastName">
+                <mat-error>
+                    <span *ngIf="!registerForm.get('lastName').valid && registerForm.get('lastName').touched">Por favor ingresa el apellido </span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="registro-full-width">
+                <input matInput placeholder="Correo" formControlName="email">
+                <mat-error>
+                    <span *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched">Por favor ingresa el correo</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="registro-full-width">
+                <input matInput [matDatepicker]="dateOfBirth" placeholder="Fecha de Nacimiento" formControlName="dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+                <mat-datepicker #dateOfBirth></mat-datepicker>
+                <mat-error>
+                    <span *ngIf="!registerForm.get('dateOfBirth').valid && registerForm.get('dateOfBirth').touched">Por favor ingresa la fecha de Nacimiento</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="registro-full-width" pais="options.value.country">
+                <mat-select placeholder="País" formControlName="country">
+                    <mat-option value="PE">Perú</mat-option>
+                    <mat-option value="CH">Chile</mat-option>
+                    <mat-option value="US">Estados Unidos</mat-option>
+                    <mat-option value="AR">Argentina</mat-option>
+                    <mat-option value="CO">Colombia</mat-option>
+                    <mat-option value="VE">Venezuela</mat-option>
+                    <mat-option value="BO">Bolivia</mat-option>
+                    <mat-option value="UR">Uruguay</mat-option>
+                    <mat-option value="CA">Canada</mat-option>
+                    <mat-option value="OT">Otro</mat-option>
+                </mat-select>
+                <mat-error>
+                    <span *ngIf="!registerForm.get('country').valid && registerForm.get('country').touched">Por favor selecciona el País</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="registro-full-width" pais="options.value.stateProvince">
+                <mat-select placeholder="Estado/Provincia" formControlName="stateProvince">
+                    <mat-option value="Colorado">Colorado</mat-option>
+                    <mat-option value="Connecticut">Connecticut</mat-option>
+                    <mat-option value="Florida">Florida</mat-option>
+                    <mat-option value="Delaware">Delaware</mat-option>
+                    <mat-option value="Georgia">Georgia</mat-option>
+                    <mat-option value="Illinois">Illinois</mat-option>
+                    <mat-option value="Bolivia">Indiana</mat-option>
+                    <mat-option value="Otro">Otro</mat-option>
+                </mat-select>
+                <mat-error>
+                    <span *ngIf="!registerForm.get('stateProvince').valid && registerForm.get('stateProvince').touched">Por favor selecciona el Estado/Provincia</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="registro-full-width">
+                <input matInput placeholder="Dirección" formControlName="addressLine1">
+                <mat-error>
+                    <span *ngIf="!registerForm.get('addressLine1').valid && registerForm.get('addressLine1').touched">Por favor ingresa la dirección </span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="registro-full-width">
+                <input matInput placeholder="Ciudad" formControlName="city">
+                <mat-error>
+                    <span *ngIf="!registerForm.get('city').valid && registerForm.get('city').touched">Por favor ingresa la Ciudad </span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="registro-full-width">
+                <input matInput placeholder="Código Postal" formControlName="postalCode">
+                <mat-error>
+                    <span *ngIf="!registerForm.get('postalCode').valid && registerForm.get('postalCode').touched">Por favor ingresa el código Postal </span>
+                </mat-error>
+            </mat-form-field>
+            <div class="button-row">
+                <button type="submit" [disabled]="!registerForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+                <a mat-flat-button color="primary" [routerLink]="['/usuarios']">
+                    <mat-icon>keyboard_backspace</mat-icon>
+                </a>
+            </div>
+
+        </form>
+    </mat-card>
+</div>
