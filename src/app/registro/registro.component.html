@@ -18,7 +18,7 @@
                     <span *ngIf="!registerForm.get( 'firstName').valid.maxlength">No más de 10 carácteres. </span>
                 </mat-error>
                 <mat-error>
-                    <span *ngIf="!registerForm.get( 'firstName').valid.whitespace">No ingresar espacios en blanco </span>
+                    <span *ngIf="!registerForm.get( 'firstName').whitespace">No ingresar espacios en blanco </span>
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="registro-full-width">
@@ -32,7 +32,7 @@
                     <span *ngIf="!registerForm.get( 'lastName').valid.maxlength">No más de 10 carácteres. </span>
                 </mat-error>
                 <mat-error>
-                    <span *ngIf="!registerForm.get( 'lastName').valid.whitespace">No ingresar espacios en blanco </span>
+                    <span *ngIf="!registerForm.get( 'lastName').whitespace">No ingresar espacios en blanco </span>
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="registro-full-width">
@@ -42,7 +42,7 @@
             correo</span>
                 </mat-error>
                 <mat-error>
-                    <span *ngIf="!registerForm.get( 'email').valid.whitespace">No ingresar espacios en blanco </span>
+                    <span *ngIf="!registerForm.get( 'email').whitespace">No ingresar espacios en blanco </span>
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="registro-full-width ">
@@ -54,7 +54,7 @@
             ingresa la fecha de Nacimiento</span>
                 </mat-error>
                 <mat-error>
-                    <span *ngIf="!registerForm.get( 'dateOfBirth').valid.whitespace">No ingresar espacios en blanco </span>
+                    <span *ngIf="!registerForm.get( 'dateOfBirth').whitespace">No ingresar espacios en blanco </span>
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="registro-full-width" pais="options.value.country">
@@ -109,7 +109,7 @@
             Ciudad </span>
                 </mat-error>
                 <mat-error>
-                    <span *ngIf="!registerForm.get( 'city').valid.whitespace">No ingresar espacios en blanco </span>
+                    <span *ngIf="!registerForm.get( 'city').whitespace">No ingresar espacios en blanco </span>
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="registro-full-width">
@@ -119,11 +119,9 @@
             ingresa el código Postal </span>
                 </mat-error>
                 <mat-error>
-                    <span *ngIf="!registerForm.get( 'postalCode').valid.whitespace">No ingresar espacios en blanco </span>
+                    <span *ngIf="!registerForm.get( 'postalCode').whitespace">No ingresar espacios en blanco </span>
                 </mat-error>
-                <mat-error>
-                    <span *ngIf="!registerForm.get( 'firstName').valid.whitespace">No ingresar espacios en blanco </span>
-                </mat-error>
+
             </mat-form-field>
             <div class="button-row">
                 <button type="submit" [disabled]="!registerForm.valid" mat-flat-button color="primary">
