@@ -26,16 +26,16 @@ export class RegistroComponent implements OnInit {
       .formBuilder
       .group({
         'firstName': [
-          null, [Validators.required,Validators.maxLength(10),this.noWhitespaceValidator]
+          null, [Validators.required,Validators.maxLength(10)]
         ],
         'lastName': [
-          null, [Validators.required,Validators.maxLength(10),this.noWhitespaceValidator]
+          null, [Validators.required,Validators.maxLength(10)]
         ],
         'email': [
-          null, [Validators.required,Validators.email,this.noWhitespaceValidator]
+          null, [Validators.required,Validators.email,]
         ],
         'dateOfBirth': [
-          null, [Validators.required,this.noWhitespaceValidator]
+          null, Validators.required
 
         ],
         'country': [
@@ -47,21 +47,22 @@ export class RegistroComponent implements OnInit {
 
         ],
         'addressLine1': [
-          null, [Validators.required,this.noWhitespaceValidator]
+          null, Validators.required
 
         ],
         'city': [
           null, Validators.required
 
         ],
-        'postalCode': [null, [Validators.required,this.noWhitespaceValidator]]
+        'postalCode': [null, Validators.required]
       });
   }
+  /*
   public noWhitespaceValidator(control: FormControl): { whitespace: boolean } {
     const isWhitespace = (control.value || '').trim().length === 0;
     const isValid = !isWhitespace;
     return isValid ? null : { 'whitespace': true };
-}
+  }*/
   onFormSubmit(form : NgForm) {
 
     this.isLoadingResults = true;
