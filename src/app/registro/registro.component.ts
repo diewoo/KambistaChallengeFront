@@ -26,10 +26,10 @@ export class RegistroComponent implements OnInit {
       .formBuilder
       .group({
         'firstName': [
-          null, Validators.required,Validators.maxLength(10)
+          null, Validators.required
         ],
         'lastName': [
-          null, Validators.required,Validators.maxLength(10)
+          null, Validators.required
         ],
         'email': [
           null, Validators.required,Validators.email

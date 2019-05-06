@@ -14,9 +14,7 @@
                     <span *ngIf="!registerForm.get( 'firstName').valid && registerForm.get( 'firstName').touched ">Por favor
             ingresa el nombre </span>
                 </mat-error>
-                <mat-error>
-                    <span *ngIf="!registerForm.get( 'firstName').valid.maxlength">No más de 10 carácteres. </span>
-                </mat-error>
+
 
             </mat-form-field>
             <mat-form-field class="registro-full-width">
@@ -26,9 +24,7 @@
             el apellido </span>
                 </mat-error>
 
-                <mat-error>
-                    <span *ngIf="!registerForm.get( 'lastName').valid.maxlength">No más de 10 carácteres. </span>
-                </mat-error>
+
 
             </mat-form-field>
             <mat-form-field class="registro-full-width">
