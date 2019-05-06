@@ -41,11 +41,7 @@ export class CuentasUsuarioComponent implements OnInit {
           this.isLoadingResults = false;
           Swal.fire(
             'El usuario no tiene cuentas de banco registradas'
-            
             )
-            this
-            .router
-            .navigate(['/usuarios']);
         }else{
           this.dataSource = res.data as ICuenta[];
           this.isLoadingResults = false;

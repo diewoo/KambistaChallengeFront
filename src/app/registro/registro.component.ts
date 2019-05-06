@@ -6,6 +6,7 @@ import {ApiService} from '../api.service';
 import {FormGroup, FormControl, Validators, NgForm, FormBuilder} from '@angular/forms';
 @Component({selector: 'app-registro', templateUrl: './registro.component.html', styleUrls: ['./registro.component.css']})
 export class RegistroComponent implements OnInit {
+
   registerForm : FormGroup;
   firstName : string = '';
   lastName : string = '';
@@ -17,7 +18,7 @@ export class RegistroComponent implements OnInit {
   city : string = '';
   postalCode : string = '';
   isLoadingResults = false;
-
+ 
   constructor(private formBuilder : FormBuilder, private router : Router, private api : ApiService) {}
 
   ngOnInit() {
@@ -25,16 +26,16 @@ export class RegistroComponent implements OnInit {
       .formBuilder
       .group({
         'firstName': [
-          null, Validators.required
+          null, [Validators.required,Validators.maxLength(10),this.noWhitespaceValidator]
         ],
         'lastName': [
-          null, Validators.required
+          null, [Validators.required,Validators.maxLength(10),this.noWhitespaceValidator]
         ],
         'email': [
-          null, Validators.required
+          null, [Validators.required,Validators.email,this.noWhitespaceValidator]
         ],
         'dateOfBirth': [
-          null, Validators.required
+          null, [Validators.required,this.noWhitespaceValidator]
 
         ],
         'country': [
@@ -46,35 +47,42 @@ export class RegistroComponent implements OnInit {
 
         ],
         'addressLine1': [
-          null, Validators.required
+          null, [Validators.required,this.noWhitespaceValidator]
 
         ],
         'city': [
           null, Validators.required
 
         ],
-        'postalCode': [null, Validators.required]
+        'postalCode': [null, [Validators.required,this.noWhitespaceValidator]]
       });
   }
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
+}
   onFormSubmit(form : NgForm) {
+
     this.isLoadingResults = true;
     this
       .api
       .registrarUsuario(form)
       .subscribe(data => {
         this.isLoadingResults = false;
-        if (data.mensaje == ' ') {
-          this
-            .router
-            .navigate(['/registro']);
-
-          Swal.fire(data.mensaje)
-        } else {
-          Swal.fire({position: 'top-end', type: 'success', title: 'Usuario registrado con éxito', showConfirmButton: false, timer: 1500})
+        if (data.cod == 1) {
+          
+          Swal.fire({type: 'success', title: 'Usuario registrado con éxito', showConfirmButton: false, timer: 1500})
           this
             .router
             .navigate(['/usuarios']);
-          console.log(data);
+          //console.log(data);
+        } else {
+          this
+            .router
+            .navigate(['/registro']);
+          //console.log(data)
+          Swal.fire(data.data.errors[0].message) 
         }
 
       }, error => {

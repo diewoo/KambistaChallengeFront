@@ -14,14 +14,14 @@ export class PagoComponent implements OnInit {
   destinationToken : string = '';
   isLoadingResults = false;
   currency = 'USD'
-  programToken : 'prg-2109d76e-225c-4176-ab59-f7f94535a46a'
+  programToken : 'prg-869c0d7b-7038-40f0-9b18-90e6061419b8'
   constructor(private formBuilder : FormBuilder, private route : ActivatedRoute, private router : Router, private api : ApiService, private dialogRef : MatDialogRef < PagoComponent >, @Inject(MAT_DIALOG_DATA)data) {
     this.destinationToken = data.token;
     console.log(data.token)
   }
 
   ngOnInit() {
-    //const token2 = this.route.snapshot.params['token']; console.log(token2)
+    
     this.addPagoForm = this
       .formBuilder
       .group({
@@ -37,7 +37,7 @@ export class PagoComponent implements OnInit {
         'destinationToken': [this.destinationToken],
 
         'programToken': [
-          'prg-2109d76e-225c-4176-ab59-f7f94535a46a', Validators.required
+          'prg-869c0d7b-7038-40f0-9b18-90e6061419b8', Validators.required
         ],
         'currency': ['USD', Validators.required]
       });
@@ -49,20 +49,16 @@ export class PagoComponent implements OnInit {
       .api
       .emitirPago(form)
       .subscribe(data => {
-        console.log(data)
+
         this.isLoadingResults = false;
-        if (data.mensaje == ' ') {
-          /* this
-            .router
-            .navigate(['/usuarios']);
-*/
-          Swal.fire(data.mensaje)
+        if (data.cod ==0) {
+        Swal.fire(data.data.errors[0].message) 
         } else {
           Swal.fire({position: 'top-end', type: 'success', title: 'Pago emitido con éxito', showConfirmButton: false, timer: 1500})
           this
             .router
             .navigate(['/usuarios']);
-          console.log(data);
+         
         }
 
       }, error => {

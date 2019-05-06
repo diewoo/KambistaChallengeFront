@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { ApiService } from './../api.service';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { IUsuario } from './../Interfaces/Usuario.interface';
 import { PagoComponent } from './../pago/pago.component';
 
 import { Router } from '@angular/router'
-import { ApiService } from '../api.service';
 
-import { MatTableDataSource, MatSort, MatPaginator, MatSortModule } from '@angular/material';
+
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-@Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
-})
-export class UsuariosComponent implements OnInit {
-  data: IUsuario[];
+import { Subject, merge, Observable, of } from 'rxjs';
+
+@Component({ selector: 'app-usuarios', templateUrl: './usuarios.component.html', styleUrls: ['./usuarios.component.css'] })
+export class UsuariosComponent implements OnInit,AfterViewInit {
+  //data: IUsuario[];
   displayedColumns: string[] = [
     'firstName',
     'lastName',
@@ -27,29 +26,49 @@ export class UsuariosComponent implements OnInit {
     'addPago',
     'verCuentas'
   ];
-
-
+  observador: Subject<any> = new Subject()
+  totalRegistros: number
+  registrosPorPagina: number = 10
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   isLoadingResults = true;
+  public data = new MatTableDataSource<IUsuario>();
 
-  constructor(private api: ApiService
-    , private router: Router, private dialog: MatDialog) { }
+  constructor(private api: ApiService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.api.obtenerUsuarios()
-      .subscribe((res: any) => {
-        this.data = res.data
-        console.log(this.data)
-        this.isLoadingResults = false;
 
-      }, err => {
-        this
-          .router
-          .navigate(["/usuarios"])
-        console.log(err);
-        this.isLoadingResults = false;
-      })
-      
+   this.obtenerUsuarios();
+    
   }
+
+  ngAfterViewInit(): void {
+    this.data.sort = this.sort;
+    this.data.paginator = this.paginator;
+  }
+obtenerUsuarios(){
+this
+  .api
+  .obtenerUsuarios()
+  .subscribe((res: any) => {
+    this.data.data = res.data as IUsuario[]
+    this.isLoadingResults = false;
+
+  }, err => {
+    this
+      .router
+      .navigate(["/usuarios"])
+    console.log(err);
+    this.isLoadingResults = false;
+  })
+  
+  
+  
+
+}
+
+
+   
 
   public agregarMetodoPago = (token: string) => { }
   AddContact = (token: string) => {
@@ -72,6 +91,8 @@ export class UsuariosComponent implements OnInit {
       });
 
   }
+  public doFilter = (value: string) => {
+    this.data.filter = value.trim().toLocaleLowerCase();
+  }
 
 }
-

@@ -34,24 +34,23 @@ export class AgregarPagoComponent implements OnInit {
     this.isLoadingResults = true;
 
     const token2 = this.route.snapshot.params['token'];
-    console.log(token2)
+    //console.log(token2)
     this
       .api
       .registrarMetodoPago(form, token2)
       .subscribe(data => {
-        console.log(data)
-        if (data.mensaje == ' ') {
+        //console.log(data)
+        if (data.cod == 0) {
           this
             .router
             .navigate(['/registrar-pago', token2]);
-
-          Swal.fire(data.mensaje)
+            Swal.fire(data.data.errors[0].message) 
         } else {
-          Swal.fire({position: 'top-end', type: 'success', title: 'Método de pago agregado con éxito', showConfirmButton: false, timer: 1500})
+          Swal.fire({type: 'success', title: 'Método de pago agregado con éxito', showConfirmButton: false, timer: 1500})
           this
             .router
             .navigate(['/usuarios']);
-          console.log(data);
+         
         }
 
         this.isLoadingResults = false;

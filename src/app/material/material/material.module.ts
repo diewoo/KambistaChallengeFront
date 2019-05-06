@@ -17,7 +17,11 @@ import * as Material from "@angular/material";
     Material.MatProgressSpinnerModule,
     Material.MatNativeDateModule,
     Material.MatDatepickerModule,
-    Material.MatTableModule
+    Material.MatTableModule,
+    Material.MatPaginatorModule,
+    Material.MatSortModule,
+    Material.MatInputModule,
+    Material.MatPaginatorModule 
   ],
   exports: [
     Material.MatFormFieldModule,
@@ -31,7 +35,11 @@ import * as Material from "@angular/material";
     Material.MatProgressSpinnerModule,
     Material.MatNativeDateModule,
     Material.MatDatepickerModule,
-    Material.MatTableModule
+    Material.MatTableModule,
+    Material.MatPaginatorModule,
+    Material.MatSortModule,
+    Material.MatInputModule,
+    Material.MatPaginatorModule 
   ]
 })
 export class MaterialModule {}

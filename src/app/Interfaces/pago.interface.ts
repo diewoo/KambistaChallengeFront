@@ -7,5 +7,6 @@ export interface IPayment {
    amount : string;
    purpose : string;
    mensaje:string;
+   errors:string;
 
 }

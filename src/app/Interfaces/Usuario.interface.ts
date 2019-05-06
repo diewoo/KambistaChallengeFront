@@ -12,8 +12,8 @@ export interface IUsuario {
   stateProvince?: string;
   postalCode?: string;
   programToken?: string;
-  mensaje:string;
-  data?:string[];
-  verCuentas:string;
+  mensaje : string;
+  errors?: string;
+  verCuentas : string;
 
 }
