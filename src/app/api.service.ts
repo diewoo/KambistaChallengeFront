@@ -11,8 +11,8 @@ import {IPayment} from './Interfaces/pago.interface'
 import {Router} from '@angular/router';
 //Headers
 
-//const apiUrl = 'https://kambistachallenge.herokuapp.com/users';
-const apiUrl = 'http://localhost:3000/users';
+const apiUrl = 'https://kambistachallenge.herokuapp.com/users';
+//const apiUrl = 'http://localhost:3000/users';
 
 @Injectable({providedIn: 'root'})
 export class ApiService {
