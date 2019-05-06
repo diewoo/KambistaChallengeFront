@@ -32,7 +32,7 @@ export class RegistroComponent implements OnInit {
           null, Validators.required
         ],
         'email': [
-          null, Validators.required,Validators.email
+          null, Validators.required
         ],
         'dateOfBirth': [
           null, Validators.required
