@@ -57,7 +57,7 @@ export class RegistroComponent implements OnInit {
         'postalCode': [null, [Validators.required,this.noWhitespaceValidator]]
       });
   }
-  public noWhitespaceValidator(control: FormControl) {
+  public noWhitespaceValidator(control: FormControl): { whitespace: boolean } {
     const isWhitespace = (control.value || '').trim().length === 0;
     const isValid = !isWhitespace;
     return isValid ? null : { 'whitespace': true };
